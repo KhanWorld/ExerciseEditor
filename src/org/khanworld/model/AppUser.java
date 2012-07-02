@@ -1,5 +1,6 @@
 package org.khanworld.model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Id;
@@ -7,21 +8,30 @@ import javax.persistence.Id;
 /**
  * User of the application
  */
-public class AppUser{
+public class AppUser implements Serializable{
 
-	public enum Rank{
-		ADMIN, MODERATOR, APPRENTICE
+	private static final long	serialVersionUID	= 1L;
+
+	public enum Role{
+		ADMIN, MODERATOR, TRANSLATOR
 	};
 
 	@Id
-	public String		openId;
+	public String		id;
+	public String		email;
 	public Set<String>	languages;
-	public Rank			rank;
+	public String		defaultLanguage;
+	public Role			role;
 
-	public AppUser(String openId){
-		this.openId = openId;
+	@SuppressWarnings("unused")
+	private AppUser(){}
+
+	public AppUser(String id, String email){
+		this.id = id;
+		this.email = email;
+		this.role = Role.TRANSLATOR;
 		this.languages = new HashSet<String>();
-		this.rank = Rank.APPRENTICE;
+		this.defaultLanguage = Language.ENGLISH;
 	}
 
 }

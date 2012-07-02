@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Exercise Editor</title>
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="shortcut icon" href="/img/favicon.ico">
+</head>
+<body>
+	<div class="container">
+		<div class="subnav">
+			<ul class="nav nav-pills">
+				<li><a href="/">Home</a></li>
+				{% if defaults.session %}
+					<li><a href="/logout">Logout</a></li>
+				{% else %}
+					<li><a href="/login">Login</a></li>
+				{% endif %}
+			</ul>
+		</div>
+		{% block content %}{% endblock %}
+	</div>
+	<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>
